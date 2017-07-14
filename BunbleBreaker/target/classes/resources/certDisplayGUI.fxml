@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="certTable" VBox.vgrow="ALWAYS">
+         <columns>
+            <TableColumn fx:id="certTableCol" prefWidth="599.0" text="Certificates" />
+         </columns>
+      </TableView>
+      <TextArea fx:id="certTextArea" />
+   </children>
+</VBox>
