@@ -41,6 +41,12 @@ public class FriendlyExtensionFilter{
 		this.filters.addAll(getAllPossibleCases(extensions));
 	}
 	
+	public FriendlyExtensionFilter(List<ExtensionFilter>... filtersLists){
+		for(List<ExtensionFilter> filterList : filtersLists){
+			this.filters.addAll(getAllPossibleCases((ExtensionFilter[])filterList.toArray()));
+		}
+	}
+	
 	/**
 	 * Utility class for expanding all filters to match file extensions in a case insensitive fashion
 	 * 
@@ -74,7 +80,7 @@ public class FriendlyExtensionFilter{
 	protected List<String> getAllPossibleCases(String... exts){
 		Set<String> allExts = new HashSet<>();
 		for(String ext : exts){
-			allExts.addAll(getAllPossibleCases(ext));
+			allExts.addAll(getAllPossibleExtensions(ext));
 		}
 		return new ArrayList<>(allExts);
 	}
