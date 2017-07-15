@@ -22,6 +22,7 @@ import com.zeva.tlGen.utils.CertificateUtilities;
 
 import biz.ui.controller.utils.ControllerUtils;
 import biz.ui.controller.utils.IPopupController;
+import biz.ui.filesystem.FriendlyExtensionFilter;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
@@ -156,22 +157,20 @@ public abstract class CryptToolController extends ControllerUtils implements IPo
 		return requestDirectory("Export Location", null);
 	}
 	
-	public static ExtensionFilter getBundleExtensionFilter(){
-		return new ExtensionFilter("Bundles", "*.p7b", "*.p7c", 
-				"*.P7B", "*.P7C");
+	public static List<ExtensionFilter> getBundleExtensionFilter(){
+		return new FriendlyExtensionFilter("Bundles", "*.p7b", "*.p7c").get();
 	}
 	
-	public static ExtensionFilter getPemExtensionFilter(){
-		return new ExtensionFilter("PEM Files",  "*.PEM", "*.pem");
+	public static List<ExtensionFilter> getPemExtensionFilter(){
+		return new FriendlyExtensionFilter("PEM Files", "*.pem").get();
 	}
 	
-	public static ExtensionFilter getX509CertsExtensionFilter(){
-		return new ExtensionFilter("X509 Certs", "*.cer", "*.CER", "*.der", "*.DER");
+	public static List<ExtensionFilter> getX509CertsExtensionFilter(){
+		return new FriendlyExtensionFilter("X509 Certs", "*.cer", "*.der").get();
 	}
 	
-	public static ExtensionFilter getAllCertFileExtensionFilters(){
-		return new ExtensionFilter("Cert Files", "*.p7b", "*.p7c", 
-				"*.P7B", "*.P7C", "*.PEM", "*.pem", "X509 Certs", "*.cer", "*.CER", "*.der", "*.DER");
+	public static List<ExtensionFilter> getAllCertFileExtensionFilters(){
+		return new FriendlyExtensionFilter("Cert Files", "*.p7b", "*.p7c", "*.pem", "*.der").get();
 	}
 	
 

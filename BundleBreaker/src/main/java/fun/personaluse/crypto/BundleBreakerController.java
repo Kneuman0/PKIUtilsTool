@@ -84,6 +84,7 @@ public class BundleBreakerController extends CryptToolController implements IPop
     
     public void onInspectCerts(){
     	List<File> certLocations = super.requestFiles("Import Certs", null, getAllCertFileExtensionFilters());
+    	if(certLocations == null || certLocations.isEmpty()) return;
     	List<CertificateBean> certs = super.getCertificates(certLocations);
     	certDisplayer.getCertList().addAll(certs);
     }
