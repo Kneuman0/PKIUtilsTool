@@ -3,24 +3,15 @@ package fun.personaluse.crypto;
 import java.io.File;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import java.util.Optional;
 
 import biz.ui.controller.utils.IPopupController;
 import fun.personalacademics.model.CertificateBean;
 import fun.personalacademics.utils.CertificateUtilities;
 import fun.personaluse.certdisplay.CertDisplayer;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class BundleBreakerController extends CryptToolController implements IPopupController{
 	

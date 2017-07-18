@@ -9,7 +9,6 @@ import fun.personalacademics.utils.TrustListUtilFactory;
 import fun.personaluse.certdisplay.CertTable;
 import javafx.event.EventHandler;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;

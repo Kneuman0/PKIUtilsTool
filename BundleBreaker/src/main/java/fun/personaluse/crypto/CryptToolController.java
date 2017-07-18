@@ -7,18 +7,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateEncodingException;
-import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.xml.bind.DatatypeConverter;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.bouncycastle.crypto.tls.DigestAlgorithm;
-import org.bouncycastle.jcajce.provider.digest.SHA1.Digest;
-import org.bouncycastle.jcajce.provider.digest.SHA3.Digest224;
 import org.bouncycastle.jcajce.provider.digest.SHA3.Digest512;
 
 import biz.ui.controller.utils.ControllerUtils;
@@ -29,7 +21,6 @@ import fun.personalacademics.utils.CertificateEncapsulater;
 import fun.personalacademics.utils.CertificateEncapsulater.CERT_TYPES;
 import fun.personalacademics.utils.CertificateUtilities;
 import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.stage.Stage;
 
 public abstract class CryptToolController extends ControllerUtils implements IPopupController{
 	

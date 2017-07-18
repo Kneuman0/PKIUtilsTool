@@ -1,7 +1,6 @@
 package fun.personaluse.listeners;
 
 import fun.personalacademics.model.CertificateBean;
-import fun.personaluse.certdisplay.CertDisplayer;
 import fun.personaluse.certdisplay.CertTable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
