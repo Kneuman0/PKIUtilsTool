@@ -1,21 +1,12 @@
 package fun.personaluse.certdisplay;
 
-import java.util.List;
-import java.util.Optional;
-
-import com.zeva.tlGen.dataModel.CertificateBean;
-
 import biz.ui.controller.utils.ControllerUtils;
+import fun.personalacademics.model.CertificateBean;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
 public class CertDisplayerController extends ControllerUtils{
 	

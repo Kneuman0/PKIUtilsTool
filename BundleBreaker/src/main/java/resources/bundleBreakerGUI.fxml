@@ -80,5 +80,54 @@
             </GridPane>
          </content>
     </Tab>
+      <Tab text="Misc Utils">
+         <content>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="174.0" minHeight="10.0" prefHeight="174.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="116.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="122.0" prefWidth="600.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <children>
+                        <Label text="Hash Input" />
+                        <TextArea fx:id="hashInput" prefHeight="119.0" prefWidth="600.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextArea>
+                        <HBox alignment="CENTER" prefHeight="27.0" prefWidth="600.0">
+                           <children>
+                              <RadioButton fx:id="ecohRB" mnemonicParsing="false" text="ECOH">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="hashes" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="sha256RB" mnemonicParsing="false" text="SHA256" toggleGroup="$hashes" />
+                              <RadioButton fx:id="sha3512" mnemonicParsing="false" text="SHA3-512" toggleGroup="$hashes" />
+                              <RadioButton fx:id="sha1RB" mnemonicParsing="false" selected="true" text="SHA1" toggleGroup="$hashes" />
+                              <RadioButton fx:id="md5" mnemonicParsing="false" text="MD5" toggleGroup="$hashes" />
+                              <Button mnemonicParsing="false" onAction="#onHash" text="Hash!">
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Label text="Hash Output" />
+                        <TextArea fx:id="hashOutput" prefHeight="83.0" prefWidth="600.0" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </VBox>
+               </children>
+            </GridPane>
+         </content>
+      </Tab>
   </tabs>
 </TabPane>

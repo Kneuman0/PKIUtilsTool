@@ -1,7 +1,6 @@
 package fun.personaluse.listeners;
 
-import com.zeva.tlGen.dataModel.CertificateBean;
-
+import fun.personalacademics.model.CertificateBean;
 import fun.personaluse.certdisplay.CertDisplayer;
 import fun.personaluse.certdisplay.CertTable;
 import javafx.beans.value.ChangeListener;

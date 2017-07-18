@@ -1,7 +1,7 @@
 package fun.personaluse.certdisplay;
 
-import com.zeva.tlGen.dataModel.CertificateBean;
 
+import fun.personalacademics.model.CertificateBean;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

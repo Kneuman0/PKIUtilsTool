@@ -3,10 +3,9 @@ package fun.personaluse.listeners;
 import java.util.List;
 import java.util.Optional;
 
-import com.zeva.tlGen.dataModel.CertificateBean;
-import com.zeva.tlGen.utils.TrustListUtilFactory;
-
 import biz.ui.controller.utils.ControllerUtils;
+import fun.personalacademics.model.CertificateBean;
+import fun.personalacademics.utils.TrustListUtilFactory;
 import fun.personaluse.certdisplay.CertTable;
 import javafx.event.EventHandler;
 import javafx.scene.control.ButtonType;

@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateEncodingException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
@@ -14,15 +15,19 @@ import java.util.regex.Pattern;
 
 import javax.xml.bind.DatatypeConverter;
 
-import com.zeva.certs.utils.DataCertificateUtilities;
-import com.zeva.tlGen.dataModel.CertificateBean;
-import com.zeva.tlGen.utils.CertificateEncapsulater;
-import com.zeva.tlGen.utils.CertificateEncapsulater.CERT_TYPES;
-import com.zeva.tlGen.utils.CertificateUtilities;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.bouncycastle.crypto.tls.DigestAlgorithm;
+import org.bouncycastle.jcajce.provider.digest.SHA1.Digest;
+import org.bouncycastle.jcajce.provider.digest.SHA3.Digest224;
+import org.bouncycastle.jcajce.provider.digest.SHA3.Digest512;
 
 import biz.ui.controller.utils.ControllerUtils;
 import biz.ui.controller.utils.IPopupController;
 import biz.ui.filesystem.FriendlyExtensionFilter;
+import fun.personalacademics.model.CertificateBean;
+import fun.personalacademics.utils.CertificateEncapsulater;
+import fun.personalacademics.utils.CertificateEncapsulater.CERT_TYPES;
+import fun.personalacademics.utils.CertificateUtilities;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
@@ -131,6 +136,7 @@ public abstract class CryptToolController extends ControllerUtils implements IPo
 				certs.addAll(certEncap.getEncapulatedCerts());
 			} catch (Exception e) {
 				System.out.println("Error: " + e.getMessage());
+				e.printStackTrace();
 				continue;
 			}
 		}
@@ -144,6 +150,21 @@ public abstract class CryptToolController extends ControllerUtils implements IPo
 		return new CertificateEncapsulater(correctPEM, CERT_TYPES.PEM).getEncapulatedCerts();
 	}
 	
+	public static String hashSha1(String value){
+		return DigestUtils.sha1Hex(value);
+	}
+	
+	public static String hashSha3(String value) throws NoSuchAlgorithmException{
+		return new String(Digest512.getInstance("sha3").digest(value.getBytes())); 
+	}
+	
+	public static String hashSha256(String value){
+		return DigestUtils.sha256Hex(value);
+	}
+	
+	public static String hashmd5(String value){
+		return DigestUtils.md5Hex(value);
+	}
 	
 	public File getBundleLocation(){
 		return requestFile("Bundle Location", null, getBundleExtensionFilter());
@@ -170,7 +191,8 @@ public abstract class CryptToolController extends ControllerUtils implements IPo
 	}
 	
 	public static List<ExtensionFilter> getAllCertFileExtensionFilters(){
-		return new FriendlyExtensionFilter("Cert Files", "*.p7b", "*.p7c", "*.pem", "*.der").get();
+		return new FriendlyExtensionFilter("Cert Files", "*.p7b", "*.p7c", "*.pem",
+				"*.der", "*.p12", "*.pfx").get();
 	}
 	
 

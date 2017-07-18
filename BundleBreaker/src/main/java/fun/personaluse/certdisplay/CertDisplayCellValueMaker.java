@@ -1,7 +1,7 @@
 package fun.personaluse.certdisplay;
 
-import com.zeva.tlGen.dataModel.CertificateBean;
 
+import fun.personalacademics.model.CertificateBean;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;

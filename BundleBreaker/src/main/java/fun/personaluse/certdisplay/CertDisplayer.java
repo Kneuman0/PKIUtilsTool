@@ -3,8 +3,7 @@ package fun.personaluse.certdisplay;
 
 import java.util.List;
 
-import com.zeva.tlGen.dataModel.CertificateBean;
-
+import fun.personalacademics.model.CertificateBean;
 import fun.personaluse.listeners.OnDeleteCert;
 import fun.personaluse.listeners.OnMouseClicked;
 import fun.personaluse.listeners.OnSelectionChangeListener;

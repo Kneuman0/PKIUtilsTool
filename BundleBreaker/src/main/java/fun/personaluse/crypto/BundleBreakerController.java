@@ -1,19 +1,22 @@
 package fun.personaluse.crypto;
 
 import java.io.File;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
-import com.zeva.tlGen.dataModel.CertificateBean;
-import com.zeva.tlGen.utils.CertificateUtilities;
-
 import biz.ui.controller.utils.IPopupController;
+import fun.personalacademics.model.CertificateBean;
+import fun.personalacademics.utils.CertificateUtilities;
 import fun.personaluse.certdisplay.CertDisplayer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -25,10 +28,18 @@ public class BundleBreakerController extends CryptToolController implements IPop
     private VBox certDisplayVbox;
     
     @FXML
-    private TextArea b64TextArea;
+    private TextArea b64TextArea,
+    				hashInput,
+    				hashOutput;
     
     private CertDisplayer certDisplayer;
-
+    
+    @FXML
+    private RadioButton sha3512,
+    					sha1RB,
+    					ecohRB,
+    					sha256RB,
+    					md5;
     
 	@Override
 	public void initialize() {
@@ -128,6 +139,24 @@ public class BundleBreakerController extends CryptToolController implements IPop
     		return;
     	}
     	exportCerts(certDisplayer.getSelectedCerts());
+    }
+    
+    public void onHash(){
+    	if(sha1RB.isSelected()){
+    		hashOutput.setText(hashSha1(hashInput.getText()));
+    	}else if(sha256RB.isSelected()){
+    		hashOutput.setText(hashSha256(hashInput.getText()));
+    	}else if(sha3512.isSelected()){
+    		try {
+				hashOutput.setText(hashSha3(hashInput.getText()));
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			}
+    	}else if(md5.isSelected()){
+    		hashOutput.setText(hashmd5(hashInput.getText()));
+    	}else{
+    		
+    	}
     }
 
 	
