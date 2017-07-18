@@ -6,13 +6,19 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.Principal;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,10 +31,15 @@ import org.apache.xml.security.exceptions.Base64DecodingException;
 import org.apache.xml.security.exceptions.XMLSecurityException;
 
 import com.zeva.tlGen.dataModel.CertificateBean;
+import com.zeva.trustlist.popup.PasswordPopup;
+
+import fun.personalacademics.model.FileSystemKeyStoreKeyingDataProviderFactory;
+import javafx.scene.control.ButtonType;
+import xades4j.providers.impl.FileSystemKeyStoreKeyingDataProvider;
 
 public class CertificateEncapsulater {
 	
-	public static enum CERT_TYPES {CER, PEM, P7B, P7C, PFX};
+	public static enum CERT_TYPES {CER, PEM, P7B, P7C, PFX, P12};
 	List<X509Certificate> certs;
 	
 	/**
@@ -47,6 +58,8 @@ public class CertificateEncapsulater {
 				certFile.getAbsolutePath().toLowerCase().endsWith("p7c")){
 			loadP7BFile(certFile);
 		}else if(certFile.getAbsolutePath().toLowerCase().endsWith("pfx")){
+			loadPFXFile(certFile);
+		}else if(certFile.getAbsolutePath().toLowerCase().endsWith(".p12")){
 			loadPFXFile(certFile);
 		}else{
 			throw new Exception(certFile.getAbsolutePath() + "is not a supported file type");
@@ -72,8 +85,6 @@ public class CertificateEncapsulater {
 			loadCERFile(base64);
 		}else if(type == CERT_TYPES.PEM){
 			loadPEMFile(base64);
-		}else if(type == CERT_TYPES.PFX){
-			loadPFXFile(base64);
 		}else {
 			loadP7BFile(base64);
 		}
@@ -137,12 +148,20 @@ public class CertificateEncapsulater {
 	/**
 	 * Method for loading PFX file
 	 * @param certFile
+	 * @throws FileNotFoundException 
+	 * @throws NoSuchAlgorithmException 
+	 * @throws KeyStoreException 
 	 * @throws CertificateException
 	 * @throws IOException
 	 * @throws Base64DecodingException
 	 */
-	private void loadPFXFile(File certFile) throws CertificateException, IOException, Base64DecodingException{
-		addCertsFromFile("PFX", certFile);
+	private void loadPFXFile(File certFile) throws KeyStoreException, NoSuchAlgorithmException, CertificateException, FileNotFoundException, IOException {
+		PasswordPopup passwordPopup = new PasswordPopup();
+		Optional<ButtonType> result = passwordPopup.showAndWait();
+		if(result.isPresent() && result.get() == ButtonType.OK){
+			getPasswordProtectedCerts(passwordPopup.getPassword(), certFile);
+		}
+		
 	}
 	
 	/**
@@ -214,8 +233,8 @@ public class CertificateEncapsulater {
 		addCertsFromString("X.509", certFile);
 	}
 	
-	private void loadPFXFile(String certFile) throws CertificateException, IOException, XMLSecurityException{
-		addCertsFromString("PFX", certFile);
+	private void loadPFXFile(String certFile) throws CertificateException, IOException, XMLSecurityException, KeyStoreException, NoSuchAlgorithmException{
+		loadPFXFile(new File(certFile));
 	}
 	
 	private void addCertsFromFile(String instanceType, File certFile) throws CertificateException, IOException{
@@ -226,6 +245,18 @@ public class CertificateEncapsulater {
 		while(itr.hasNext()){
 			certs.add((X509Certificate)itr.next());
 		}
+	}
+	
+	private void getPasswordProtectedCerts(String password, File certFile) throws KeyStoreException, NoSuchAlgorithmException, CertificateException, FileNotFoundException, IOException{
+        KeyStore p12 = KeyStore.getInstance("pkcs12");
+        p12.load(new FileInputStream(certFile), password.toCharArray());
+        Enumeration<String> e = p12.aliases();
+        while (e.hasMoreElements()) {
+            String alias = (String) e.nextElement();
+            X509Certificate cert = (X509Certificate) p12.getCertificate(alias);
+            certs.add(cert);
+        }
+ 
 	}
 	
 	private void addCertsFromString(String instanceType, String certFile) throws CertificateException, IOException{
