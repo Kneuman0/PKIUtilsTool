@@ -8,18 +8,12 @@ import fun.personaluse.listeners.OnDeleteCert;
 import fun.personaluse.listeners.OnMouseClicked;
 import fun.personaluse.listeners.OnSelectionChangeListener;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class CertDisplayer extends VBox{
 	
-	
-    @FXML
     private CertTable certTable;
-
-    @FXML
     private TextArea certTextArea;
     
     
@@ -35,9 +29,7 @@ public class CertDisplayer extends VBox{
 			.addListener(new OnSelectionChangeListener(certTextArea, certTable));
 		getChildren().addAll(certTable, certTextArea);
 		setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-		certTextArea.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-		setVgrow(certTable, Priority.ALWAYS);
-		setVgrow(certTextArea, Priority.ALWAYS);
+		certTextArea.setMaxSize(Double.MAX_VALUE, 500);
 	}
 	
 

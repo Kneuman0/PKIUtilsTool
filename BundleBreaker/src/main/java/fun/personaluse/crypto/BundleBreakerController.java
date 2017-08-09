@@ -1,12 +1,16 @@
 package fun.personaluse.crypto;
 
 import java.io.File;
+import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
 import java.util.List;
 
 import biz.ui.controller.utils.IPopupController;
+import fun.personalacademics.controllers.CryptToolController;
 import fun.personalacademics.model.CertificateBean;
 import fun.personalacademics.utils.CertificateUtilities;
+import fun.personalacademics.utils.RadixConverter;
 import fun.personaluse.certdisplay.CertDisplayer;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
@@ -21,7 +25,10 @@ public class BundleBreakerController extends CryptToolController implements IPop
     @FXML
     private TextArea b64TextArea,
     				hashInput,
-    				hashOutput;
+    				hashOutput,
+    				temp,
+    				hextToHumanTextBox,
+    				hextToDecimalTextBox;
     
     private CertDisplayer certDisplayer;
     
@@ -89,6 +96,12 @@ public class BundleBreakerController extends CryptToolController implements IPop
     	if(certLocations == null || certLocations.isEmpty()) return;
     	List<CertificateBean> certs = super.getCertificates(certLocations);
     	certDisplayer.getCertList().addAll(certs);
+    	try {
+			System.out.println(getValidationPath(certs.get(0)));
+		} catch (CertificateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     public void onTextToCertConversion(){
@@ -149,7 +162,17 @@ public class BundleBreakerController extends CryptToolController implements IPop
     		
     	}
     }
+    
+    public void onConvertHexToHumanReadable(){
+    	if(hextToHumanTextBox.getText().isEmpty()) return;
+    	hextToHumanTextBox.setText(RadixConverter.hexToASCII(hextToHumanTextBox.getText()));
+    }
 
-	
+    public void onConvertHexToDecimal(){
+    	if(hextToDecimalTextBox.getText().isEmpty()) return;
+    	hextToDecimalTextBox.setText(
+    			RadixConverter.hexToDecimal(
+    					hextToDecimalTextBox.getText()));
+    }
 
 }
