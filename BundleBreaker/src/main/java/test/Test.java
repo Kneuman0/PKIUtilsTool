@@ -1,7 +1,12 @@
 package test;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.math.BigInteger;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,6 +14,8 @@ import java.util.List;
 import biz.ui.controller.utils.ControllerUtils;
 import biz.ui.launchers.generic.ProgressSplashScreen;
 import biz.ui.launchers.generic.SplashScreen;
+import fun.personalacademics.model.CertificateBean;
+import fun.personalacademics.utils.CertificateUtilities;
 import fun.personalacademics.utils.RadixConverter;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -22,11 +29,10 @@ import javafx.stage.Stage;
 
 public class Test extends Application{
 
-	public static void main(String[] args) {
-		launch(args);
-//		BigInteger TWO_COMPL_REF = BigInteger.ONE.shiftLeft(16);
-//		BigInteger num = new BigInteger("ffdd4477", 16);
-		System.out.println(RadixConverter.hexToUnsignedInt("ffdd447799"));
+	public static void main(String[] args) throws CertificateException, FileNotFoundException {
+//		launch(args);
+		X509Certificate cert = (X509Certificate)CertificateFactory.getInstance("X.509").generateCertificate(new FileInputStream("/home/karottop/Desktop/cert.cer"));
+		System.out.println(new CertificateBean(cert));
 	}
 
 	@Override

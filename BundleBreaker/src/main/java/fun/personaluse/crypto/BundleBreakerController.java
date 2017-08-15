@@ -28,7 +28,8 @@ public class BundleBreakerController extends CryptToolController implements IPop
     				hashOutput,
     				temp,
     				hextToHumanTextBox,
-    				hextToDecimalTextBox;
+    				hextToDecimalTextBox,
+    				formatHexField;
     
     private CertDisplayer certDisplayer;
     
@@ -173,6 +174,11 @@ public class BundleBreakerController extends CryptToolController implements IPop
     	hextToDecimalTextBox.setText(
     			RadixConverter.hexToDecimal(
     					hextToDecimalTextBox.getText()));
+    }
+    
+    public void onConvertToColonSepHex(){
+    	System.out.println(CertificateUtilities.toColonSepHex(formatHexField.getText()));
+    	formatHexField.setText(CertificateUtilities.toColonSepHex(formatHexField.getText()));
     }
 
 }

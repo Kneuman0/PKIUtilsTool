@@ -85,7 +85,7 @@
             </GridPane>
          </content>
     </Tab>
-      <Tab text="Misc Utils">
+      <Tab text="Crypto Utils">
          <content>
             <GridPane>
               <columnConstraints>
@@ -142,6 +142,29 @@
                         <Label alignment="CENTER" text="Hex to Decimal" />
                         <TextArea fx:id="hextToDecimalTextBox" prefHeight="200.0" prefWidth="200.0" />
                         <Button mnemonicParsing="false" onAction="#onConvertHexToDecimal" text="Convert" />
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </content>
+      </Tab>
+      <Tab text="String Utils">
+         <content>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <children>
+                        <Label text="Hex Format" />
+                        <TextArea fx:id="formatHexField" prefHeight="200.0" prefWidth="200.0" />
+                        <Button mnemonicParsing="false" onAction="#onConvertToColonSepHex" text="Format" />
                      </children>
                   </VBox>
                </children>
