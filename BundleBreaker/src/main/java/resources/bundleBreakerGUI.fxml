@@ -37,6 +37,8 @@
                                     <MenuItem mnemonicParsing="false" onAction="#onBreakPemListener" text="Locate PEMs to Break" />
                                     <MenuItem mnemonicParsing="false" onAction="#combineCertsListener" text="Combine Certs to PEM" />
                                     <MenuItem mnemonicParsing="false" onAction="#onInspectCerts" text="Import Certs" />
+                                    <MenuItem mnemonicParsing="false" onAction="#onInspectKeyStore" text="Import Java Keystore" />
+                                    <MenuItem mnemonicParsing="false" onAction="#onGetCertsFromURL" text="Add Certs From URL" />
                               </items>
                             </Menu>
                               <Menu mnemonicParsing="false" text="Export">
@@ -130,20 +132,6 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-                     <children>
-                        <Label alignment="CENTER" text="Hex to ASCII" />
-                        <TextArea fx:id="hextToHumanTextBox" prefHeight="200.0" prefWidth="200.0" />
-                        <Button mnemonicParsing="false" onAction="#onConvertHexToHumanReadable" text="Convert" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
-                     <children>
-                        <Label alignment="CENTER" text="Hex to Decimal" />
-                        <TextArea fx:id="hextToDecimalTextBox" prefHeight="200.0" prefWidth="200.0" />
-                        <Button mnemonicParsing="false" onAction="#onConvertHexToDecimal" text="Convert" />
-                     </children>
-                  </VBox>
                </children>
             </GridPane>
          </content>
@@ -165,6 +153,20 @@
                         <Label text="Hex Format" />
                         <TextArea fx:id="formatHexField" prefHeight="200.0" prefWidth="200.0" />
                         <Button mnemonicParsing="false" onAction="#onConvertToColonSepHex" text="Format" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                     <children>
+                        <Label alignment="CENTER" text="Hex to ASCII" />
+                        <TextArea fx:id="hextToHumanTextBox" prefHeight="200.0" prefWidth="200.0" />
+                        <Button mnemonicParsing="false" onAction="#onConvertHexToHumanReadable" text="Convert" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                     <children>
+                        <Label alignment="CENTER" text="Hex to Decimal" />
+                        <TextArea fx:id="hextToDecimalTextBox" prefHeight="200.0" prefWidth="200.0" />
+                        <Button mnemonicParsing="false" onAction="#onConvertHexToDecimal" text="Convert" />
                      </children>
                   </VBox>
                </children>

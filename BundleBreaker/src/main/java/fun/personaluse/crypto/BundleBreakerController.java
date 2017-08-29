@@ -82,7 +82,7 @@ public class BundleBreakerController extends CryptToolController implements IPop
 
     @FXML
     public void combineCertsListener() {
-    	List<File> certLocations = super.requestFiles("X509 Certs", null, getX509CertsExtensionFilter());
+    	List<File> certLocations = super.requestFiles("X509 Certs", null, CertificateUtilities.X509_CERT_EXTS);
     	if(certLocations == null || certLocations.size() == 0) return;
     	displayMessage("Export", "Please Choose a location to export", null);
     	File exportFolder = super.getExportLocation();
@@ -93,7 +93,8 @@ public class BundleBreakerController extends CryptToolController implements IPop
     }
     
     public void onInspectCerts(){
-    	List<File> certLocations = super.requestFiles("Import Certs", null, getAllCertFileExtensionFilters());
+    	System.out.println(CertificateUtilities.ALL_CERT_EXTS);
+    	List<File> certLocations = super.requestFiles("Import Certs", null, CertificateUtilities.ALL_CERT_EXTS);
     	if(certLocations == null || certLocations.isEmpty()) return;
     	List<CertificateBean> certs = super.getCertificates(certLocations);
     	certDisplayer.getCertList().addAll(certs);
@@ -103,6 +104,11 @@ public class BundleBreakerController extends CryptToolController implements IPop
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    }
+    
+    public void onInspectKeyStore(){
+    	List<CertificateBean> beans = importDefaultJavaKeyStores();
+    	if(beans != null && !beans.isEmpty()) certDisplayer.getCertList().addAll(beans);
     }
     
     public void onTextToCertConversion(){
@@ -179,6 +185,12 @@ public class BundleBreakerController extends CryptToolController implements IPop
     public void onConvertToColonSepHex(){
     	System.out.println(CertificateUtilities.toColonSepHex(formatHexField.getText()));
     	formatHexField.setText(CertificateUtilities.toColonSepHex(formatHexField.getText()));
+    }
+    
+    public void onGetCertsFromURL(){
+    	List<CertificateBean> beans = getCertsFromURL();
+    	if(beans.isEmpty() || beans == null) return;
+    	certDisplayer.getCertList().addAll(beans);
     }
 
 }
