@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 
+@SuppressWarnings("restriction")
 public class CertDisplayer extends VBox{
 	
     private CertTable certTable;

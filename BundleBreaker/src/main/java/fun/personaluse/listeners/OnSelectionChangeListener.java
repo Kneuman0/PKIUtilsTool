@@ -6,6 +6,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TextArea;
 
+@SuppressWarnings("restriction")
 public class OnSelectionChangeListener implements ChangeListener<CertificateBean>{
 	
 	private TextArea textArea;

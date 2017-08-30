@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 
+@SuppressWarnings("restriction")
 public class OnMouseClicked implements EventHandler<MouseEvent> {
 
 	public TextArea textArea;

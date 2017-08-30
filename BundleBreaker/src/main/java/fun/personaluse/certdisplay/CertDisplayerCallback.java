@@ -5,6 +5,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
 
+@SuppressWarnings("restriction")
 public class CertDisplayerCallback implements Callback<TableColumn<CertificateBean, CertificateBean>,
 TableCell<CertificateBean, CertificateBean>>{
 

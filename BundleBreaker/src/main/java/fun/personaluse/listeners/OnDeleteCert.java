@@ -13,6 +13,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+@SuppressWarnings("restriction")
 public class OnDeleteCert extends ControllerUtils implements EventHandler<KeyEvent>{
 	
 	private TextArea display;

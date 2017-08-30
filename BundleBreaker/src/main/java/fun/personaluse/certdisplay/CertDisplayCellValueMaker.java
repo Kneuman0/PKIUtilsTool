@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextFlow;
 
+@SuppressWarnings("restriction")
 public class CertDisplayCellValueMaker extends TableCell<CertificateBean, CertificateBean>{
 
 	GridPane grid;

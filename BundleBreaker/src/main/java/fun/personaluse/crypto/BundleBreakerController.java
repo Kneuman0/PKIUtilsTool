@@ -1,9 +1,7 @@
 package fun.personaluse.crypto;
 
 import java.io.File;
-import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
 import java.util.List;
 
 import biz.ui.controller.utils.IPopupController;
@@ -17,6 +15,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 
+@SuppressWarnings("restriction")
 public class BundleBreakerController extends CryptToolController implements IPopupController{
 	
     @FXML
@@ -93,17 +92,17 @@ public class BundleBreakerController extends CryptToolController implements IPop
     }
     
     public void onInspectCerts(){
-    	System.out.println(CertificateUtilities.ALL_CERT_EXTS);
-    	List<File> certLocations = super.requestFiles("Import Certs", null, CertificateUtilities.ALL_CERT_EXTS);
-    	if(certLocations == null || certLocations.isEmpty()) return;
-    	List<CertificateBean> certs = super.getCertificates(certLocations);
-    	certDisplayer.getCertList().addAll(certs);
-    	try {
-			System.out.println(getValidationPath(certs.get(0)));
-		} catch (CertificateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//    	System.out.println(CertificateUtilities.ALL_CERT_EXTS);
+//    	List<File> certLocations = super.requestFiles("Import Certs", null, CertificateUtilities.ALL_CERT_EXTS);
+//    	if(certLocations == null || certLocations.isEmpty()) return;
+//    	List<CertificateBean> certs = super.getCertificates(certLocations);
+//    	certDisplayer.getCertList().addAll(certs);
+//    	try {
+//			System.out.println(getValidationPath(certs.get(0)));
+//		} catch (CertificateException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
     }
     
     public void onInspectKeyStore(){

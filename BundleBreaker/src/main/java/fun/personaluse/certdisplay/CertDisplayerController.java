@@ -7,6 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 
+@SuppressWarnings("restriction")
 public class CertDisplayerController extends ControllerUtils{
 	
     @FXML
