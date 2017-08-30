@@ -92,11 +92,11 @@ public class BundleBreakerController extends CryptToolController implements IPop
     }
     
     public void onInspectCerts(){
-//    	System.out.println(CertificateUtilities.ALL_CERT_EXTS);
-//    	List<File> certLocations = super.requestFiles("Import Certs", null, CertificateUtilities.ALL_CERT_EXTS);
-//    	if(certLocations == null || certLocations.isEmpty()) return;
-//    	List<CertificateBean> certs = super.getCertificates(certLocations);
-//    	certDisplayer.getCertList().addAll(certs);
+    	System.out.println(CertificateUtilities.ALL_CERT_EXTS);
+    	List<File> certLocations = super.requestFiles("Import Certs", null, CertificateUtilities.ALL_CERT_EXTS);
+    	if(certLocations == null || certLocations.isEmpty()) return;
+    	List<CertificateBean> certs = super.getCertificates(certLocations);
+    	certDisplayer.getCertList().addAll(certs);
 //    	try {
 //			System.out.println(getValidationPath(certs.get(0)));
 //		} catch (CertificateException e) {
@@ -190,6 +190,20 @@ public class BundleBreakerController extends CryptToolController implements IPop
     	List<CertificateBean> beans = getCertsFromURL();
     	if(beans.isEmpty() || beans == null) return;
     	certDisplayer.getCertList().addAll(beans);
+    }
+    
+    public void onExportToBundle(){
+    	if(certDisplayer.getSelectedCerts() == null || certDisplayer.getSelectedCerts().size() == 0){
+    		displayErrorMessage("No Certs Selected", "You must select the "
+    				+ "certificates you want to export", null,null);
+    		return;
+    	}
+    	try {
+			saveCertsToPKCS7File(certDisplayer.getSelectedCerts());
+		} catch (Exception e) {
+			displayErrorMessage("Export Error", "An Error Occured when Exporting Bundle",null, e);
+			return;
+		}
     }
 
 }
