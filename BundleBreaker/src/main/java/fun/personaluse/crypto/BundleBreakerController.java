@@ -1,11 +1,15 @@
 package fun.personaluse.crypto;
 
 import java.io.File;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import javax.management.modelmbean.XMLParseException;
+import javax.xml.bind.JAXBException;
+
 import biz.ui.controller.utils.IPopupController;
-import fun.personalacademics.controllers.CryptToolController;
+import fun.personalacademics.controllers.TrustListParsingController;
 import fun.personalacademics.model.CertificateBean;
 import fun.personalacademics.utils.CertificateUtilities;
 import fun.personalacademics.utils.RadixConverter;
@@ -16,7 +20,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 
 @SuppressWarnings("restriction")
-public class BundleBreakerController extends CryptToolController implements IPopupController{
+public class BundleBreakerController extends TrustListParsingController implements IPopupController{
 	
     @FXML
     private VBox certDisplayVbox;
@@ -204,6 +208,32 @@ public class BundleBreakerController extends CryptToolController implements IPop
 			displayErrorMessage("Export Error", "An Error Occured when Exporting Bundle",null, e);
 			return;
 		}
+    }
+    
+    public void onImportTrustListCerts(){
+    	List<CertificateBean> beans = null;
+    	try {
+			beans = getCertsFromTrustList();
+		} catch (JAXBException | XMLParseException e) {
+			displayErrorMessage("Trust List Parsing Error", "Error Parsing Trust List", null, e);
+		}
+    	
+    	if(beans == null || beans.isEmpty()) return;
+    	
+    	certDisplayer.getCertList().addAll(beans);    	
+    }
+    
+    public void onImportTrustListCertsFromURL(){
+    	List<CertificateBean> beans = null;
+    	try {
+			beans = getCertsFromTrustListURL();
+		} catch (JAXBException | XMLParseException | IOException e) {
+			displayErrorMessage("Trust List Parsing Error", "Error Parsing Trust List", null, e);
+		}
+    	
+    	if(beans == null || beans.isEmpty()) return;
+    	
+    	certDisplayer.getCertList().addAll(beans); 
     }
 
 }

@@ -35,14 +35,16 @@
                                 <MenuItem mnemonicParsing="false" onAction="#OnClose" text="Close" />
                                     <MenuItem mnemonicParsing="false" onAction="#onBreakBundleListener" text="Locate Bundles to Break" />
                                     <MenuItem mnemonicParsing="false" onAction="#onBreakPemListener" text="Locate PEMs to Break" />
-                                    <MenuItem mnemonicParsing="false" onAction="#combineCertsListener" text="Combine Certs to PEM" />
                                     <MenuItem mnemonicParsing="false" onAction="#onInspectCerts" text="Import Certs" />
                                     <MenuItem mnemonicParsing="false" onAction="#onInspectKeyStore" text="Import Java Keystore" />
                                     <MenuItem mnemonicParsing="false" onAction="#onGetCertsFromURL" text="Add Certs From URL" />
+                                    <MenuItem mnemonicParsing="false" onAction="#onImportTrustListCerts" text="Import Certs From Trust List" />
+                                    <MenuItem mnemonicParsing="false" onAction="#onImportTrustListCertsFromURL" text="Import Trust List Certs From URL" />
                               </items>
                             </Menu>
                               <Menu mnemonicParsing="false" text="Export">
                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#combineCertsListener" text="Combine Certs to PEM" />
                                     <MenuItem mnemonicParsing="false" onAction="#onExportCertstoCER" text="Export Certs to DER/CER" />
                                   <MenuItem mnemonicParsing="false" onAction="#onExportCertsToPEM" text="Export Certs to Pem" />
                                     <MenuItem mnemonicParsing="false" onAction="#onExportToBundle" text="Export Selected Certs to Bundle" />
