@@ -54,7 +54,7 @@
     </plugins>
   </build>
   <dependencies>
-  <!-- https://github.com/Kneuman0/GUIUtils -->
+  <!-- Below can be found @ https://github.com/Kneuman0/GUIUtils -->
   	<dependency>
   		<groupId>GUIUtils</groupId>
   		<artifactId>GUIUtils</artifactId>
@@ -80,7 +80,7 @@
   		<artifactId>commons-lang</artifactId>
   		<version>2.1</version>
   	</dependency>
-  	<!-- https://github.com/Kneuman0/PKIUtilsLib.git -->
+  	<!-- Below can be found @ https://github.com/Kneuman0/PKIUtilsLib.git -->
   	<dependency>
   		<groupId>PKIUtilsLib</groupId>
   		<artifactId>PKIUtilsLib</artifactId>
