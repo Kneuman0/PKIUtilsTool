@@ -85,13 +85,10 @@ public class BundleBreakerController extends TrustListParsingController implemen
 
     @FXML
     public void combineCertsListener() {
-    	List<File> certLocations = super.requestFiles("X509 Certs", null, CertificateUtilities.X509_CERT_EXTS);
-    	if(certLocations == null || certLocations.size() == 0) return;
     	displayMessage("Export", "Please Choose a location to export", null);
     	File exportFolder = super.getExportLocation();
     	if(exportFolder == null) return;
-    	List<CertificateBean> certs = super.encapsulateX509Certs(certLocations);
-    	certDisplayer.getCertList().addAll(certs);
+    	List<CertificateBean> certs = certDisplayer.getSelectedCerts();    	
     	super.exportCertsToPem(certs, exportFolder);
     }
     
