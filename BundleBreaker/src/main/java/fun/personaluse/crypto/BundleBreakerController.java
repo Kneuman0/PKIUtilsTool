@@ -15,8 +15,10 @@ import fun.personalacademics.utils.CertificateUtilities;
 import fun.personalacademics.utils.RadixConverter;
 import fun.personaluse.certdisplay.CertDisplayer;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 @SuppressWarnings("restriction")
@@ -32,7 +34,8 @@ public class BundleBreakerController extends TrustListParsingController implemen
     				temp,
     				hextToHumanTextBox,
     				hextToDecimalTextBox,
-    				formatHexField;
+    				formatHexField,
+    				checksumTextField;
     
     private CertDisplayer certDisplayer;
     
@@ -43,10 +46,17 @@ public class BundleBreakerController extends TrustListParsingController implemen
     					sha256RB,
     					md5;
     
+    @FXML
+    private TextField checksumFile;
+    
+    @FXML
+    private ComboBox<String> hashAlgComboBox;
+    
 	@Override
 	public void initialize() {
 		this.certDisplayer = new CertDisplayer();
 		certDisplayVbox.getChildren().add(certDisplayer);
+		hashAlgComboBox.getItems().addAll("MD5", "SHA1", "SHA-256");
 	}
  
     @FXML
@@ -231,6 +241,36 @@ public class BundleBreakerController extends TrustListParsingController implemen
     	if(beans == null || beans.isEmpty()) return;
     	
     	certDisplayer.getCertList().addAll(beans); 
+    }
+    
+    public void onBrowseForChecksumFile() {
+    	File file = super.requestFile("Select Checksum File", null);
+    	if(file == null) return;
+    	this.checksumFile.setText(file.getAbsolutePath());
+    }
+    
+    public void onValidateChecksum() {
+    	if(this.checksumFile.getText().isEmpty()) return;
+    	File file = new File(this.checksumFile.getText()
+    			.replace(File.pathSeparatorChar, '/'));
+    	String hashingAlg = "";
+    	if(hashAlgComboBox.getSelectionModel().isEmpty()) {
+    		displayErrorMessage("Hash Alg.", "You must choose a Hashing Algorithm",
+    				null, null);
+    		return;
+    	}else {
+    		hashingAlg = hashAlgComboBox.getSelectionModel().getSelectedItem().toString();
+    	}
+    	
+    	try {
+    		String result = super.checksumIsValid(file, hashingAlg,
+    				checksumTextField.getText()) ? "Pass" : "Fail";
+			this.checksumTextField.setText(String.format("Result: %s\n%s: %s", 
+					result, hashingAlg, super.checkSumFile(file, hashingAlg))); 			
+		} catch (Exception e) {
+			displayErrorMessage("Error Calculating Hash",
+					"The Following Error Occured: ", null, e);
+		}
     }
 
 }
