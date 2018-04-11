@@ -1,6 +1,7 @@
 package fun.personaluse.crypto;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -9,6 +10,7 @@ import javax.management.modelmbean.XMLParseException;
 import javax.xml.bind.JAXBException;
 
 import biz.ui.controller.utils.IPopupController;
+import biz.ui.filesystem.FriendlyExtensionFilter;
 import fun.personalacademics.controllers.TrustListParsingController;
 import fun.personalacademics.model.CertificateBean;
 import fun.personalacademics.utils.CertificateUtilities;
@@ -270,6 +272,18 @@ public class BundleBreakerController extends TrustListParsingController implemen
 		} catch (Exception e) {
 			displayErrorMessage("Error Calculating Hash",
 					"The Following Error Occured: ", null, e);
+		}
+    }
+    
+    public void onImportCertsFromAATL() {
+    	File xml = requestFile("AATL XML", "", new FriendlyExtensionFilter("XML File","*.xml").get());
+    	if(xml == null) return;
+    	try {
+			this.certDisplayer.getCertList().addAll(super.extractCertsFromAATLXML(xml));
+		} catch (FileNotFoundException e) {
+			displayErrorMessage("Error Parsing AATL XML", 
+					"Error parsing AATL XML - please make sure it was\nexported from the PDF correctly",
+					null, e);
 		}
     }
 
