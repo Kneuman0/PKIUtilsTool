@@ -45,7 +45,6 @@
                             </Menu>
                               <Menu mnemonicParsing="false" text="Export">
                                 <items>
-                                    <MenuItem mnemonicParsing="false" onAction="#combineCertsListener" text="Combine Certs to PEM" />
                                     <MenuItem mnemonicParsing="false" onAction="#onExportCertstoCER" text="Export Certs to DER/CER" />
                                   <MenuItem mnemonicParsing="false" onAction="#onExportCertsToPEM" text="Export Certs to Pem" />
                                     <MenuItem mnemonicParsing="false" onAction="#onExportToBundle" text="Export Selected Certs to Bundle" />

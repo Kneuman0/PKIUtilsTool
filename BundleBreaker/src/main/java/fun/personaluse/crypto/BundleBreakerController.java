@@ -88,21 +88,13 @@ public class BundleBreakerController extends TrustListParsingController implemen
     
     private void exportCerts(List<CertificateBean> certs){
     	displayMessage("Export", "Please Choose a location to export", null);
-    	File exportFolder = super.getExportLocation();
+    	File exportFolder = super.getExportDirectory();
     	if(exportFolder == null) return;
     	super.exportToCerts(exportFolder, certs);
     	displayMessage("Success!", "Your certificates sucessfully exported!",
     			"Location: " + exportFolder.getAbsolutePath());
     }
 
-    @FXML
-    public void combineCertsListener() {
-    	displayMessage("Export", "Please Choose a location to export", null);
-    	File exportFolder = super.getExportLocation();
-    	if(exportFolder == null) return;
-    	List<CertificateBean> certs = certDisplayer.getSelectedCerts();    	
-    	super.exportCertsToPem(certs, exportFolder);
-    }
     
     public void onInspectCerts(){
     	System.out.println(CertificateUtilities.ALL_CERT_EXTS);
