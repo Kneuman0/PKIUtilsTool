@@ -13,6 +13,7 @@ import biz.ui.controller.utils.IPopupController;
 import biz.ui.filesystem.FriendlyExtensionFilter;
 import fun.personalacademics.controllers.TrustListParsingController;
 import fun.personalacademics.model.CertificateBean;
+import fun.personalacademics.popup.GetURLPopup;
 import fun.personalacademics.utils.CertificateUtilities;
 import fun.personalacademics.utils.RadixConverter;
 import fun.personaluse.certdisplay.CertDisplayer;
@@ -275,6 +276,16 @@ public class BundleBreakerController extends TrustListParsingController implemen
 		} catch (FileNotFoundException e) {
 			displayErrorMessage("Error Parsing AATL XML", 
 					"Error parsing AATL XML - please make sure it was\nexported from the PDF correctly",
+					null, e);
+		}
+    }
+    
+    public void onImportCertsFromAATLUrl() {
+      	try {
+			this.certDisplayer.getCertList().addAll(extractCertsFromAATLURL());
+		} catch (Exception e) {
+			displayErrorMessage("Error Parsing AATL XML", 
+					"Error parsing AATL URL - please make sure the URL\npoints to the Adobe AATL PDF",
 					null, e);
 		}
     }

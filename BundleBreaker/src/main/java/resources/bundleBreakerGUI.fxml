@@ -41,6 +41,7 @@
                                     <MenuItem mnemonicParsing="false" onAction="#onImportTrustListCerts" text="Import Certs From Trust List" />
                                     <MenuItem mnemonicParsing="false" onAction="#onImportTrustListCertsFromURL" text="Import Trust List Certs From URL" />
                                     <MenuItem mnemonicParsing="false" onAction="#onImportCertsFromAATL" text="Import AATL XML Certs" />
+                                    <MenuItem mnemonicParsing="false" onAction="#onImportCertsFromAATLUrl" text="Import AATL From URL" />
                               </items>
                             </Menu>
                               <Menu mnemonicParsing="false" text="Export">
