@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -40,14 +40,16 @@
                                     <MenuItem mnemonicParsing="false" onAction="#onGetCertsFromURL" text="Add Certs From URL" />
                                     <MenuItem mnemonicParsing="false" onAction="#onImportTrustListCerts" text="Import Certs From Trust List" />
                                     <MenuItem mnemonicParsing="false" onAction="#onImportTrustListCertsFromURL" text="Import Trust List Certs From URL" />
+                                    <MenuItem mnemonicParsing="false" onAction="#onImportCertsFromAATL" text="Import AATL XML Certs" />
+                                    <MenuItem mnemonicParsing="false" onAction="#onImportCertsFromAATLUrl" text="Import AATL From URL" />
                               </items>
                             </Menu>
                               <Menu mnemonicParsing="false" text="Export">
                                 <items>
-                                    <MenuItem mnemonicParsing="false" onAction="#combineCertsListener" text="Combine Certs to PEM" />
                                     <MenuItem mnemonicParsing="false" onAction="#onExportCertstoCER" text="Export Certs to DER/CER" />
                                   <MenuItem mnemonicParsing="false" onAction="#onExportCertsToPEM" text="Export Certs to Pem" />
                                     <MenuItem mnemonicParsing="false" onAction="#onExportToBundle" text="Export Selected Certs to Bundle" />
+                                    <MenuItem mnemonicParsing="false" onAction="#onExportToJavaKeyStore" text="Export to Java KeyStore" />
                                 </items>
                               </Menu>
                           </menus>
