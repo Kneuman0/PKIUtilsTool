@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -49,7 +49,6 @@
                                     <MenuItem mnemonicParsing="false" onAction="#onExportCertstoCER" text="Export Certs to DER/CER" />
                                   <MenuItem mnemonicParsing="false" onAction="#onExportCertsToPEM" text="Export Certs to Pem" />
                                     <MenuItem mnemonicParsing="false" onAction="#onExportToBundle" text="Export Selected Certs to Bundle" />
-                                    <MenuItem mnemonicParsing="false" onAction="#onExportToJavaKeyStore" text="Export to Java KeyStore" />
                                 </items>
                               </Menu>
                           </menus>
